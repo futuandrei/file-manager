@@ -25,20 +25,21 @@ const FileUpload: React.FC = () => {
     setUploading(true);
     setMessage("");
 
-    const formData = new FormData();
-    formData.append("file", selectedFile);
+    const formData = new FormData(); // Creating FormData object for file upload
+    formData.append("file", selectedFile); // The file is appended to formData under the key "file".
 
     try {
         const response = await axios.post(
-            API_URL + "/uploads",
-            formData,
+            API_URL + "/uploads", // Backend API endpoint
+            formData, // The file to be uploaded
             {
               headers: {
-                "Content-Type": "multipart/form-data",
-                "Authorization": `Bearer ${API_KEY}`, // Replace with actual token
+                "Content-Type": "multipart/form-data", // Required for file uploads
+                "Authorization": `Bearer ${API_KEY}`, // Authorization using API key
               },
             }
           );
+     // Display a success message if the upload is successful
       setMessage("File uploaded successfully!");
       console.log(response.data);
     } catch (error) {
