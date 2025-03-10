@@ -6,9 +6,9 @@ const FileUpload: React.FC = () => {
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
 
-    // Load API details from .env
-    const API_URL = import.meta.env.VITE_UNELMACLOUD_API_URL;
-    const API_KEY = import.meta.env.VITE_UNELMACLOUD_API_KEY;
+  // Load API details from .env
+  const API_URL = import.meta.env.VITE_UNELMACLOUD_API_URL;
+  const API_KEY = import.meta.env.VITE_UNELMACLOUD_API_KEY;
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -29,19 +29,20 @@ const FileUpload: React.FC = () => {
     formData.append("file", selectedFile); // The file is appended to formData under the key "file".
 
     try {
-        const response = await axios.post(
-            API_URL + "/uploads", // Backend API endpoint
-            formData, // The file to be uploaded
-            {
-              headers: {
-                "Content-Type": "multipart/form-data", // Required for file uploads
-                "Authorization": `Bearer ${API_KEY}`, // Authorization using API key
-              },
-            }
-          );
-     // Display a success message if the upload is successful
+      const response = await axios.post(
+        API_URL + "/uploads", // Backend API endpoint
+        formData, // The file to be uploaded
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Required for file uploads
+            "Authorization": `Bearer ${API_KEY}`, // Authorization using API key
+          },
+        }
+      );
+      // Display a success message if the upload is successful
       setMessage("File uploaded successfully!");
       console.log(response.data);
+      // handleTableUpdate();
     } catch (error) {
       console.error("Upload failed", error);
       setMessage("Failed to upload file.");
