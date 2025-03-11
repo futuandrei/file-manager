@@ -1,5 +1,7 @@
 # React + TypeScript + Vite
 
+Line added to test. Branch andrei-test
+
 ## To make this work:
 
 1. Install dependencies `npm install`
