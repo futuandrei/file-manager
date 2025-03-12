@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const FileUpload: React.FC = () => {
+interface FileUploadProps {
+  handleTableUpdate: () => void; // Accept function as prop
+}
+
+const FileUpload: React.FC<FileUploadProps> = ({ handleTableUpdate }) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
@@ -41,6 +45,8 @@ const FileUpload: React.FC = () => {
       );
       // Display a success message if the upload is successful
       setMessage("File uploaded successfully!");
+      // ✅ Call handleTableUpdate after upload
+      handleTableUpdate();
       console.log(response.data);
       // handleTableUpdate();
     } catch (error) {
