@@ -1,6 +1,6 @@
 # React + TypeScript + Vite
 
-Line added to test. Branch andrei-test
+Line added to test. Branch table-update.
 
 ## To make this work:
 
