@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // import axios from "axios";
 // import ThumbnailDisplay from "./ThumbnailDisplay";
-// import "./FileManager.css";
+import "./FileManager.css";
+import DownloadButton from './DownloadButton'
 
 interface FileEntry {
   id: string;
@@ -68,6 +69,8 @@ const FilesTable: React.FC<FilesTableProps> = ({ files, handleTableUpdate }) => 
               <td>{file.name}</td>
               <td>{file.size}</td>
               <td>
+                 {/* Pass files name and url link to download */}
+                <DownloadButton fileUrl= {`${API_URL}/file-entries/${file.id}`} fileName={file.name}  className= "download-button" />
                 <button
                   className="delete-btn"
                   onClick={() => handleDelete(file.id)} disabled={deleting === file.id}>
