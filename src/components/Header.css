@@ -1,0 +1,29 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #353535;
+    height: 54px;
+    overflow: hidden;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: #333333;
+    font-weight: 500;
+  }
+
+  .logo img {
+    max-height: 32px; /* Ensures the logo stays within the header */
+    width: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Prevent distortion */
+  }
