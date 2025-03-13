@@ -15,7 +15,7 @@
 /* Global Typography */
 body {
   font-family: var(--font-family);
-  color: #333;
-  background-color: var(--background-color);
+  /* color: #333; */
+  /* background-color: var(--background-color); */
   line-height: 1.6;
 }

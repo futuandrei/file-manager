@@ -2,8 +2,10 @@
 .main-content {
     flex: 1; /* Takes the remaining space left of sidebar */
     padding: 20px;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
+    background-color: #18181A;
   }
   
   /* Upload Section */
@@ -37,6 +39,8 @@
   .files-table {
     width: 100%;
     border-collapse: collapse;
+    color: white;
+    border: 1px solid #3A3A3D;
   }
   
   .files-table th,
@@ -51,9 +55,9 @@
     color: white;
   }
   
-  .files-table tr:nth-child(even) {
+  /* .files-table tr:nth-child(even) {
     background: #464646;
-  }
+  } */
   
   /* Delete Button */
   .delete-btn {
