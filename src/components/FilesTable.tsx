@@ -48,7 +48,7 @@ const FilesTable: React.FC<FilesTableProps> = ({ files, handleTableUpdate }) => 
     }
   };
 
-
+  console.log("Files:", files);
 
   return (
     <div>
