@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import axios from "axios";
 // import ThumbnailDisplay from "./ThumbnailDisplay";
-import "./FileManager.css";
+// import "./FileManager.css";
 
 interface FileEntry {
   id: string;

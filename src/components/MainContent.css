@@ -1,12 +1,11 @@
-/* FileManager Styles */
-.file-manager-container {
-    /* max-width: 1200px; */
-    width: 100%;
-    margin: auto;
+/* Main Styles */
+.main-content {
+    flex: 1; /* Takes the remaining space left of sidebar */
     padding: 20px;
-    background: #2d2d2d;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #18181A;
   }
   
   /* Upload Section */
@@ -40,23 +39,30 @@
   .files-table {
     width: 100%;
     border-collapse: collapse;
+    color: white;
+    border: 1px solid #3A3A3D;
   }
   
   .files-table th,
   .files-table td {
-    border: 1px solid #ddd;
+    border: none; /* Remove all borders */
     padding: 10px;
     text-align: left;
   }
   
   .files-table th {
-    background: #2f5884;
     color: white;
+    border-bottom: 2px solid #3A3A3D; /* Keeps header row separation */
   }
+
+  .files-table tr {
+    border-bottom: 1px solid #3A3A3D; /* Horizontal divider between rows */
+}
   
-  .files-table tr:nth-child(even) {
-    background: #464646;
-  }
+/* Remove border from last row */
+.files-table tr:last-child {
+    border-bottom: none;
+}
   
   /* Delete Button */
   .delete-btn {
