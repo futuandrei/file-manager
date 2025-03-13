@@ -50,6 +50,11 @@
     text-align: left;
   }
   
+  .menu {
+    display: flex;
+    gap: 10px;
+  }
+
   .files-table th {
     color: white;
     border-bottom: 2px solid #3A3A3D; /* Keeps header row separation */
