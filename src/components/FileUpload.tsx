@@ -46,8 +46,9 @@ const FileUpload: React.FC<FileUploadProps> = ({ handleTableUpdate }) => {
       // Display a success message if the upload is successful
       setMessage("File uploaded successfully!");
       // ✅ Call handleTableUpdate after upload
-      handleTableUpdate();
       console.log(response.data);
+      console.log("File uploaded successfully!");
+      handleTableUpdate();
       // handleTableUpdate();
     } catch (error) {
       console.error("Upload failed", error);
