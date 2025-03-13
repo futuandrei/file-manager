@@ -10,7 +10,7 @@ interface MainContentProps {
 const MainContent: React.FC<MainContentProps> = ({ files, handleTableUpdate }) => {
     return (
         <main className="main-content">
-            {/* <h2>Files</h2> */}
+            <h2>Files</h2>
             <FilesTable files={files} handleTableUpdate={handleTableUpdate} />
         </main>
     );

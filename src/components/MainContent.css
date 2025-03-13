@@ -45,19 +45,24 @@
   
   .files-table th,
   .files-table td {
-    border: 1px solid #ddd;
+    border: none; /* Remove all borders */
     padding: 10px;
     text-align: left;
   }
   
   .files-table th {
-    background: #2f5884;
     color: white;
+    border-bottom: 2px solid #3A3A3D; /* Keeps header row separation */
   }
+
+  .files-table tr {
+    border-bottom: 1px solid #3A3A3D; /* Horizontal divider between rows */
+}
   
-  /* .files-table tr:nth-child(even) {
-    background: #464646;
-  } */
+/* Remove border from last row */
+.files-table tr:last-child {
+    border-bottom: none;
+}
   
   /* Delete Button */
   .delete-btn {
