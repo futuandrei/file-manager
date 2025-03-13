@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import FilesTable from "./FilesTable";
 import FileUpload from "./FileUpload";
+import "./FileManager.css";
 
 const FileManager: React.FC = () => {
     const [files, setFiles] = useState([]); // Manage files in parent
@@ -28,7 +29,7 @@ const FileManager: React.FC = () => {
     }, []);
 
     return (
-        <div>
+        <div className="file-manager-container">
             <h2>File Manager</h2>
             {/* Pass handleTableUpdate to FileUpload */}
             <FileUpload handleTableUpdate={handleTableUpdate} />

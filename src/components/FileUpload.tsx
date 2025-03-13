@@ -58,7 +58,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ handleTableUpdate }) => {
   };
 
   return (
-    <div>
+    <div className="upload-section">
       <h2>Upload File</h2>
       <input type="file" onChange={handleFileChange} />
       <button onClick={handleUpload} disabled={uploading}>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import axios from "axios";
 // import ThumbnailDisplay from "./ThumbnailDisplay";
+import "./FileManager.css";
 
 interface FileEntry {
   id: string;
@@ -52,11 +53,12 @@ const FilesTable: React.FC<FilesTableProps> = ({ files, handleTableUpdate }) => 
   return (
     <div>
       <h2>Files</h2>
-      <table>
+      <table className="files-table">
         <thead>
           <tr>
             <th>Name</th>
             <th>Size</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -65,10 +67,13 @@ const FilesTable: React.FC<FilesTableProps> = ({ files, handleTableUpdate }) => 
             <tr key={file.id}>
               <td>{file.name}</td>
               <td>{file.size}</td>
-              {/* <td><ThumbnailDisplay fileId={file.id} /></td> */}
-              <button onClick={() => handleDelete(file.id)} disabled={deleting === file.id}>
-                {deleting === file.id ? "Deleting..." : "Delete"}
-              </button>
+              <td>
+                <button
+                  className="delete-btn"
+                  onClick={() => handleDelete(file.id)} disabled={deleting === file.id}>
+                  {deleting === file.id ? "Deleting..." : "Delete"}
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
