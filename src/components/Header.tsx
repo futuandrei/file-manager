@@ -1,21 +1,36 @@
-import React from "react";
-import "./Header.css"; // Import styling
+import React, { useState } from "react";
+import "./Header.css";
 import logo from "../assets/logo.png";
+import Search from "./Search"; 
 
-const Header: React.FC = () => {
-    return (
-        <header className="header">
-            {/* Logo */}
-            <div className="logo">
-                <img src={logo} alt="Logo" />
-            </div>
+interface HeaderProps {
+  allFiles: any[];
+  setFilteredFiles: (files: any[]) => void;
+}
 
-            {/* Search Bar */}
-            <div className="search-bar">
-                <input type="text" placeholder="Search files..." />
-            </div>
-        </header>
-    );
+const Header: React.FC<HeaderProps> = ({ allFiles, setFilteredFiles }) => {
+  const [searchQuery, setSearchQuery] = useState(""); 
+
+  return (
+    <header className="header">
+      <div className="logo">
+        <img src={logo} alt="Logo" />
+      </div>
+
+      <div className="search-bar">
+      <input
+        type="text"
+        placeholder="Search files..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)} 
+        className="p-2 border rounded w-full mb-4"
+      />
+
+      
+      <Search allFiles={allFiles} searchQuery={searchQuery} setFilteredFiles={setFilteredFiles} />
+      </div>
+    </header>
+  );
 };
 
 export default Header;

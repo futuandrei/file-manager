@@ -6,7 +6,8 @@ import MainContent from "./components/MainContent";
 import "./App.css";
 
 const App: React.FC = () => {
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState<any[]>([]); // ✅ Stores all files
+  const [filteredFiles, setFilteredFiles] = useState<any[]>([]); // ✅ Stores filtered files
 
   const API_URL = import.meta.env.VITE_UNELMACLOUD_API_URL;
   const API_KEY = import.meta.env.VITE_UNELMACLOUD_API_KEY;
@@ -16,21 +17,31 @@ const App: React.FC = () => {
       const response = await axios.get(`${API_URL}/drive/file-entries`, {
         headers: { Authorization: `Bearer ${API_KEY}` },
       });
-      setFiles(response.data.data);
+
+      setFiles(response.data.data); // ✅ Store original full file list
+      setFilteredFiles(response.data.data); // ✅ Ensure filteredFiles starts with full list
     } catch (error) {
       console.error("Fetching files failed", error);
     }
   };
 
   useEffect(() => {
-    handleTableUpdate(); // Fetch files when App loads
+    handleTableUpdate();
   }, []);
 
   return (
     <div className="app-container">
-      <Header />
+      {/* ✅ Pass the full file list and filtering function to Header */}
+      <Header allFiles={files} setFilteredFiles={setFilteredFiles} />
       <Sidebar handleTableUpdate={handleTableUpdate} />
-      <MainContent files={files} handleTableUpdate={handleTableUpdate} />
+
+      {/* ✅ Pass only the filtered files to MainContent */}
+      <MainContent
+        allFiles={files}
+        files={filteredFiles}
+        setFilteredFiles={setFilteredFiles}
+        handleTableUpdate={handleTableUpdate}
+      />
     </div>
   );
 };
