@@ -3,9 +3,11 @@ import axios from "axios";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import MainContent from "./components/MainContent";
+import Login from "./components/Login";
 import "./App.css";
 
 const App: React.FC = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login state
   const [files, setFiles] = useState<any[]>([]); // ✅ Stores all files
   const [filteredFiles, setFilteredFiles] = useState<any[]>([]); // ✅ Stores filtered files
 
