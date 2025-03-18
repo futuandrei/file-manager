@@ -25,6 +25,10 @@
     color: #333333;
     font-weight: 500;
   }
+  
+  /* .logo {
+    height: 50px;
+} */
 
   .logo img {
     max-height: 32px; /* Ensures the logo stays within the header */

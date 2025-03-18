@@ -33,17 +33,20 @@ const App: React.FC = () => {
 
   return (
     <div className="app-container">
-      {/* ✅ Pass the full file list and filtering function to Header */}
-      <Header allFiles={files} setFilteredFiles={setFilteredFiles} />
-      <Sidebar handleTableUpdate={handleTableUpdate} />
-
-      {/* ✅ Pass only the filtered files to MainContent */}
-      <MainContent
-        allFiles={files}
-        files={filteredFiles}
-        setFilteredFiles={setFilteredFiles}
-        handleTableUpdate={handleTableUpdate}
-      />
+      {!isLoggedIn ? (
+        <Login onLogin={() => setIsLoggedIn(true)} />
+      ) : (
+        <>
+          <Header allFiles={files} setFilteredFiles={setFilteredFiles} />
+          <Sidebar handleTableUpdate={handleTableUpdate} />
+          <MainContent
+            allFiles={files}
+            files={filteredFiles}
+            setFilteredFiles={setFilteredFiles}
+            handleTableUpdate={handleTableUpdate}
+          />
+        </>
+      )}
     </div>
   );
 };

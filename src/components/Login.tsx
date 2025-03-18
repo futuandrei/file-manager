@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Login.css"; // You can create a simple CSS file for styling
+import logo from "../assets/logo.png";
 
 const Login: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
   const [email, setEmail] = useState("");
@@ -15,8 +16,11 @@ const Login: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
 
   return (
     <div className="login-container">
+      <div className="logo">
+        <img src={logo} alt="Logo" />
+      </div>
       <form onSubmit={handleSubmit} className="login-form">
-        <h2>Sign in to Unelmacloud</h2>
+        <h2>Sign in to your account</h2>
         <input
           type="email"
           placeholder="Email address"
