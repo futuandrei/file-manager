@@ -25,6 +25,10 @@
     color: #333333;
     font-weight: 500;
   }
+  
+  /* .logo {
+    height: 50px;
+} */
 
   .logo img {
     max-height: 32px; /* Ensures the logo stays within the header */
@@ -58,4 +62,14 @@
 .search-bar input::placeholder {
     color: #cccccc; /* ✅ Ensure placeholder text is visible */
     opacity: 1; /* Ensure full opacity */
+}
+
+.logout-button {
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: #3A3A3D;
+  background-color: transparent;
+  height: 34px;
+  color: #ffffff;
 }

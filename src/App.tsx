@@ -3,9 +3,11 @@ import axios from "axios";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import MainContent from "./components/MainContent";
+import Login from "./components/Login";
 import "./App.css";
 
 const App: React.FC = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login state
   const [files, setFiles] = useState<any[]>([]); // ✅ Stores all files
   const [filteredFiles, setFilteredFiles] = useState<any[]>([]); // ✅ Stores filtered files
 
@@ -31,17 +33,20 @@ const App: React.FC = () => {
 
   return (
     <div className="app-container">
-      {/* ✅ Pass the full file list and filtering function to Header */}
-      <Header allFiles={files} setFilteredFiles={setFilteredFiles} />
-      <Sidebar handleTableUpdate={handleTableUpdate} />
-
-      {/* ✅ Pass only the filtered files to MainContent */}
-      <MainContent
-        allFiles={files}
-        files={filteredFiles}
-        setFilteredFiles={setFilteredFiles}
-        handleTableUpdate={handleTableUpdate}
-      />
+      {!isLoggedIn ? (
+        <Login onLogin={() => setIsLoggedIn(true)} />
+      ) : (
+        <>
+          <Header allFiles={files} setFilteredFiles={setFilteredFiles} />
+          <Sidebar handleTableUpdate={handleTableUpdate} />
+          <MainContent
+            allFiles={files}
+            files={filteredFiles}
+            setFilteredFiles={setFilteredFiles}
+            handleTableUpdate={handleTableUpdate}
+          />
+        </>
+      )}
     </div>
   );
 };
