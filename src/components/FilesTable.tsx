@@ -9,8 +9,9 @@ interface FileEntry {
 }
 
 interface FilesTableProps {
-  files: FileEntry[];
+  files: any[];
   handleTableUpdate: () => void;
+  onFolderClick: (folderId: string, folderName: string) => void;
 }
 
 const FilesTable: React.FC<FilesTableProps> = ({
@@ -89,6 +90,7 @@ const FilesTable: React.FC<FilesTableProps> = ({
 
   const handleRowClick = (file) => {
     if (file.type === "folder" && onFolderClick) {
+      console.log("Folder Clicked in FilesTable.tsx:", file); // ✅ Debugging
       onFolderClick(file.id, file.name);
     }
   };
