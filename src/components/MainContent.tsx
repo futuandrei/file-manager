@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react";
 import FilesTable from "./FilesTable";
-import CreateFolder from "./CreateFolder";
-import Breadcrumbs from "./Breadcrumbs";
 import "./MainContent.css";
 
 interface MainContentProps {
-  allFiles: any[];
-  files: any[];
   allFiles: any[];
   files: any[];
   setFilteredFiles: (files: any[]) => void;
