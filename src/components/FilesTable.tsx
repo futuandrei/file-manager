@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DownloadButton from "./DownloadButton";
 import RenameFile from "./RenameFile";
+import DropDownMenu from "./DropDownMenu";
 
 interface FileEntry {
   id: string;
@@ -120,23 +121,30 @@ const FilesTable: React.FC<FilesTableProps> = ({
               </td>
               <td>{file.size}</td>
               <td className="menu">
-                <RenameFile
-                  currentFileName={file.name}
-                  onRename={(newFileName) => handleRename(file.id, newFileName)}
-                />
-                {/* Pass files name and url link to download */}
-                <DownloadButton
-                  fileUrl={`${API_URL}/file-entries/${file.id}`}
-                  fileName={file.name}
-                  className="download-button"
-                />
-                <button
-                  className="delete-btn"
-                  onClick={() => handleDelete(file.id)}
-                  disabled={deleting === file.id}
-                >
-                  {deleting === file.id ? "Deleting..." : "Delete"}
-                </button>
+                <DropDownMenu>
+                  <DownloadButton
+                    fileUrl={`${API_URL}/file-entries/${file.id}`}
+                    fileName={file.name}
+                    className="download-button"
+                  />
+
+                  <RenameFile
+                    currentFileName={file.name}
+                    onRename={(newFileName) => {
+                      handleRename(file.id, newFileName);
+                    }}
+                  />
+
+                  <div>
+                    <button
+                      className="delete-btn"
+                      onClick={() => handleDelete(file.id)}
+                      disabled={deleting === file.id}
+                    >
+                      {deleting === file.id ? "Deleting..." : "Remove"}
+                    </button>
+                  </div>
+                </DropDownMenu>
               </td>
             </tr>
           ))}
