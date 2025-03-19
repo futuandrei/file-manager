@@ -15,7 +15,7 @@ interface FileEntry {
 }
 
 interface FilesTableProps {
-  files: FileEntry[];
+  files: any[];
   handleTableUpdate: () => void;
   setFilteredFiles: (files: FileEntry[]) => void;
 }
@@ -57,7 +57,9 @@ const FilesTable: React.FC<FilesTableProps> = ({ files, handleTableUpdate, setFi
       });
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || `HTTP error! Status: ${response.status}`);
+        throw new Error(
+          errorData.message || `HTTP error! Status: ${response.status}`
+        );
       }
       await response.json();
       handleTableUpdate();
@@ -138,3 +140,4 @@ const FilesTable: React.FC<FilesTableProps> = ({ files, handleTableUpdate, setFi
 };
 
 export default FilesTable;
+

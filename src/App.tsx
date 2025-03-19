@@ -31,6 +31,7 @@ const App: React.FC = () => {
     handleTableUpdate();
   }, []);
 
+
   return (
     <div className="app-container">
       {!isLoggedIn ? (
