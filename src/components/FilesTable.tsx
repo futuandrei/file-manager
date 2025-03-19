@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DownloadButton from './DownloadButton';
+import DropDownMenu from "./DropDownMenu";
 import RenameFile from './RenameFile';
 import sortFiles from "./Sorting";
 import './Sorting.css';
@@ -114,22 +115,31 @@ const FilesTable: React.FC<FilesTableProps> = ({ files, handleTableUpdate, setFi
               <td>{new Date(file.created_at).toLocaleDateString()}</td>
               <td>{new Date(file.updated_at).toLocaleDateString()}</td>
               <td className="menu">
-                <RenameFile
-                  currentFileName={file.name}
-                  onRename={(newFileName) => handleRename(file.id, newFileName)}
-                />
-                <DownloadButton
-                  fileUrl={`${API_URL}/file-entries/${file.id}`}
-                  fileName={file.name}
-                  className="download-button"
-                />
-                <button
-                  className="delete-btn"
-                  onClick={() => handleDelete(file.id)}
-                  disabled={deleting === file.id}
-                >
-                  {deleting === file.id ? "Deleting..." : "Delete"}
-                </button>
+                <DropDownMenu>
+                  <DownloadButton
+                    fileUrl={`${API_URL}/file-entries/${file.id}`}
+                    fileName={file.name}
+                    className="download-button"
+                  />
+
+                  <RenameFile 
+                    currentFileName={file.name} 
+                    onRename={(newFileName) => {
+                      handleRename(file.id, newFileName);
+                    }} 
+                  />
+    
+                  <div>
+                    <button
+                      className="delete-btn"
+                      onClick={() => handleDelete(file.id)}
+                      disabled={deleting === file.id}
+                    >
+                      {deleting === file.id ? "Deleting..." : "Remove"}
+                    </button>
+                  </div>
+
+                </DropDownMenu>
               </td>
             </tr>
           ))}
