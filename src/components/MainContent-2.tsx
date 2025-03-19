@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import FilesTable from "./FilesTable";
-import CreateFolder from "./CreateFolder"; // ✅ Import the new component
+import CreateFolder from "./CreateFolder";
 import Breadcrumbs from "./Breadcrumbs";
-import { useState } from "react";
 import "./MainContent.css";
 
 interface MainContentProps {
-  allFiles: any[]; // ✅ The full original file list
-  files: any[]; // ✅ Filtered files
+  allFiles: any[];
+  files: any[];
   setFilteredFiles: (files: any[]) => void;
   handleTableUpdate: () => void;
 }
@@ -16,7 +15,7 @@ const MainContent: React.FC<MainContentProps> = ({
   files,
   handleTableUpdate,
 }) => {
-  const [currentFolderId, setCurrentFolderId] = useState<string | null>(null); // Track current folder
+  const [currentFolderId, setCurrentFolderId] = useState<string | null>(null);
   const [breadcrumb, setBreadcrumb] = useState<
     { id: string | null; name: string }[]
   >([{ id: null, name: "All Files" }]);
@@ -31,6 +30,10 @@ const MainContent: React.FC<MainContentProps> = ({
     setBreadcrumb(breadcrumb.slice(0, index + 1));
   };
 
+  const filteredFiles = files.filter(
+    (file) => file.parentId === currentFolderId
+  );
+
   return (
     <main className="main-content">
       <h2>Files</h2>
@@ -41,14 +44,15 @@ const MainContent: React.FC<MainContentProps> = ({
         onBreadcrumbClick={handleBreadcrumbClick}
       />
 
-      {/* ✅ New Folder Button using CreateFolder component */}
+      {/* ✅ New Folder Button */}
       <CreateFolder
         currentFolderId={currentFolderId}
         handleTableUpdate={handleTableUpdate}
       />
-      {/* ✅ Only show the filtered files in the table */}
+
+      {/* ✅ Display filtered files */}
       <FilesTable
-        files={files}
+        files={filteredFiles}
         handleTableUpdate={handleTableUpdate}
         onFolderClick={handleFolderClick}
       />
