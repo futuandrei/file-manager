@@ -3,19 +3,25 @@ import FilesTable from "./FilesTable";
 import "./MainContent.css";
 
 interface MainContentProps {
-  allFiles: any[]; // ✅ The full original file list
-  files: any[]; // ✅ Filtered files
+  allFiles: any[];
+  files: any[];
   setFilteredFiles: (files: any[]) => void;
   handleTableUpdate: () => void;
 }
 
-const MainContent: React.FC<MainContentProps> = ({ files, handleTableUpdate }) => {
+const MainContent: React.FC<MainContentProps> = ({
+  files,
+  handleTableUpdate,
+  setFilteredFiles, 
+}) => {
   return (
     <main className="main-content">
       <h2>Files</h2>
-
-      {/* ✅ Only show the filtered files in the table */}
-      <FilesTable files={files} handleTableUpdate={handleTableUpdate} />
+      <FilesTable
+        files={files}
+        handleTableUpdate={handleTableUpdate}
+        setFilteredFiles={setFilteredFiles} 
+      />
     </main>
   );
 };
