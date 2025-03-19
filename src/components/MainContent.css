@@ -71,16 +71,14 @@
   
   /* Delete Button */
   .delete-btn {
-    background: #dc3545;
+    background: #18181A;
     color: white;
     border: none;
-    padding: 8px;
-    border-radius: 5px;
     cursor: pointer;
   }
   
   .delete-btn:hover {
-    background: #c82333;
+    text-decoration: underline;
   }
   
   .delete-btn:disabled {

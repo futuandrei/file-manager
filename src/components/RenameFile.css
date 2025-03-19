@@ -6,6 +6,8 @@ input {
 button {
     padding: 4px 8px; 
     font-size: 1rem;
+    background-color: rgb(136, 193, 250);
+    color: white;
 }
 
 .toggle-class {
@@ -15,8 +17,12 @@ button {
 }
 
 .toggle-button {
-    display: flex; 
-    align-items: center;
-    gap: 4px;
-    padding: 4px 8px;
+    background: #18181A;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.toggle-button:hover {
+    text-decoration: underline;
 }

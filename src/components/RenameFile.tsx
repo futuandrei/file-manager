@@ -39,7 +39,7 @@ const RenameFile: React.FC<RenameFileProps> = ({ currentFileName, onRename }) =>
       ) : (
         <div className='toggle-class'>
           <button onClick={() => setIsEditing(true)} className='toggle-button'>
-            <FaEdit style={{ fontSize: '1.2rem', color: '#555' }} />
+            Rename
           </button>
         </div>
       )}
