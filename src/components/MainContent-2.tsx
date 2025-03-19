@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import FilesTable from "./FilesTable";
 import CreateFolder from "./CreateFolder";
 import Breadcrumbs from "./Breadcrumbs";
@@ -12,9 +12,7 @@ interface MainContentProps {
 }
 
 const MainContent: React.FC<MainContentProps> = ({
-  allFiles,
   files,
-  setFilteredFiles,
   handleTableUpdate,
 }) => {
   const [currentFolderId, setCurrentFolderId] = useState<string | null>(null);
@@ -22,32 +20,9 @@ const MainContent: React.FC<MainContentProps> = ({
     { id: string | null; name: string }[]
   >([{ id: null, name: "All Files" }]);
 
-  useEffect(() => {
-    console.log("Current Folder ID:", currentFolderId);
-    console.log("All Files:", allFiles);
-
-    const filteredFiles = allFiles.filter(
-      (file) => file.parent_id === currentFolderId
-    );
-    console.log("Filtered Files:", filteredFiles);
-    setFilteredFiles(filteredFiles);
-  }, [allFiles, currentFolderId, setFilteredFiles]);
-
   const handleFolderClick = (folderId: string, folderName: string) => {
     setCurrentFolderId(folderId);
-    setBreadcrumb((prev) => {
-      const existingIndex = prev.findIndex((crumb) => crumb.id === folderId);
-      if (existingIndex !== -1) {
-        return prev.slice(0, existingIndex + 1);
-      }
-      return [...prev, { id: folderId, name: folderName }];
-    });
-
-    // Log the contents of the folder
-    const folderContents = allFiles.filter(
-      (file) => file.parent_id === folderId
-    );
-    console.log("Contents of folder:", folderContents);
+    setBreadcrumb((prev) => [...prev, { id: folderId, name: folderName }]);
   };
 
   const handleBreadcrumbClick = (index: number) => {
@@ -55,19 +30,29 @@ const MainContent: React.FC<MainContentProps> = ({
     setBreadcrumb(breadcrumb.slice(0, index + 1));
   };
 
+  const filteredFiles = files.filter(
+    (file) => file.parentId === currentFolderId
+  );
+
   return (
     <main className="main-content">
       <h2>Files</h2>
+
+      {/* ✅ Use Breadcrumbs component */}
       <Breadcrumbs
         breadcrumb={breadcrumb}
         onBreadcrumbClick={handleBreadcrumbClick}
       />
+
+      {/* ✅ New Folder Button */}
       <CreateFolder
         currentFolderId={currentFolderId}
         handleTableUpdate={handleTableUpdate}
       />
+
+      {/* ✅ Display filtered files */}
       <FilesTable
-        files={files}
+        files={filteredFiles}
         handleTableUpdate={handleTableUpdate}
         onFolderClick={handleFolderClick}
       />

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import DownloadButton from './DownloadButton'
-import RenameFile from './RenameFile';
+import DownloadButton from "./DownloadButton";
+import RenameFile from "./RenameFile";
 import DropDownMenu from "./DropDownMenu";
 
 interface FileEntry {
@@ -10,17 +10,22 @@ interface FileEntry {
 }
 
 interface FilesTableProps {
-  files: FileEntry[];
+  files: any[];
   handleTableUpdate: () => void;
+  onFolderClick: (folderId: string, folderName: string) => void;
 }
 
-const FilesTable: React.FC<FilesTableProps> = ({ files, handleTableUpdate }) => {
+const FilesTable: React.FC<FilesTableProps> = ({
+  files,
+  handleTableUpdate,
+  onFolderClick,
+}) => {
   // Load API details from .env
   const API_URL = import.meta.env.VITE_UNELMACLOUD_API_URL;
   const API_KEY = import.meta.env.VITE_UNELMACLOUD_API_KEY;
 
   const [deleting, setDeleting] = useState<string | null>(null);
- 
+
   // Handle delete (with Fetch, not Axios)
   const handleDelete = async (fileId: string) => {
     console.log("Deleting file with ID:", fileId);
@@ -35,7 +40,8 @@ const FilesTable: React.FC<FilesTableProps> = ({ files, handleTableUpdate }) => 
         },
       });
 
-      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+      if (!response.ok)
+        throw new Error(`HTTP error! Status: ${response.status}`);
 
       console.log("Delete response:", await response.json());
 
@@ -50,7 +56,7 @@ const FilesTable: React.FC<FilesTableProps> = ({ files, handleTableUpdate }) => 
 
   const handleRename = async (fileId: string, newFileName: string) => {
     console.log(`Renaming file ${fileId} to: ${newFileName}`);
-  
+
     try {
       // Make an API call to rename the file on the server
       const response = await fetch(`${API_URL}/file-entries/${fileId}`, {
@@ -61,26 +67,34 @@ const FilesTable: React.FC<FilesTableProps> = ({ files, handleTableUpdate }) => 
         },
         body: JSON.stringify({ name: newFileName }),
       });
-  
+
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || `HTTP error! Status: ${response.status}`);
+        throw new Error(
+          errorData.message || `HTTP error! Status: ${response.status}`
+        );
       }
-  
+
       const result = await response.json();
       console.log("Rename response:", result);
       handleTableUpdate();
-  
+
       // Provide feedback to the user
       alert("File renamed successfully!");
     } catch (error) {
       console.error("Renaming failed", error);
-  
+
       // Provide feedback to the user
       alert("Failed to rename the file. Please try again.");
     }
   };
 
+  const handleRowClick = (file) => {
+    if (file.type === "folder" && onFolderClick) {
+      console.log("Folder Clicked in FilesTable.tsx:", file); // ✅ Debugging
+      onFolderClick(file.id, file.name);
+    }
+  };
 
   return (
     <div>
@@ -96,8 +110,15 @@ const FilesTable: React.FC<FilesTableProps> = ({ files, handleTableUpdate }) => 
         <tbody>
           {/* File list will be displayed here */}
           {files.map((file) => (
-            <tr key={file.id}>
-              <td>{file.name}</td>
+            <tr
+              key={file.id}
+              onClick={() => handleRowClick(file)}
+              style={{ cursor: file.type === "folder" ? "pointer" : "default" }}
+            >
+              <td>
+                {file.type === "folder" ? "📁 " : "📄 "}
+                {file.name}
+              </td>
               <td>{file.size}</td>
               <td className="menu">
                 <DropDownMenu>
@@ -107,13 +128,13 @@ const FilesTable: React.FC<FilesTableProps> = ({ files, handleTableUpdate }) => 
                     className="download-button"
                   />
 
-                  <RenameFile 
-                    currentFileName={file.name} 
+                  <RenameFile
+                    currentFileName={file.name}
                     onRename={(newFileName) => {
                       handleRename(file.id, newFileName);
-                    }} 
+                    }}
                   />
-    
+
                   <div>
                     <button
                       className="delete-btn"
@@ -123,7 +144,6 @@ const FilesTable: React.FC<FilesTableProps> = ({ files, handleTableUpdate }) => 
                       {deleting === file.id ? "Deleting..." : "Remove"}
                     </button>
                   </div>
-
                 </DropDownMenu>
               </td>
             </tr>
@@ -132,8 +152,6 @@ const FilesTable: React.FC<FilesTableProps> = ({ files, handleTableUpdate }) => 
       </table>
     </div>
   );
-
-
 };
 
 export default FilesTable;
