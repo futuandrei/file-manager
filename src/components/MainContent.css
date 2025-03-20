@@ -14,17 +14,18 @@
     flex-direction: column;
     gap: 10px;
     margin-bottom: 20px;
+    margin-top: 10px;
   }
   
   .upload-section input {
     padding: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid #3A3A3D;
     border-radius: 5px;
   }
   
   .upload-section button {
-    background: #007bff;
-    color: white;
+    background: #BFDBFE;
+    color: #323232;
     border: none;
     padding: 10px;
     border-radius: 5px;
@@ -32,7 +33,7 @@
   }
   
   .upload-section button:hover {
-    background: #0056b3;
+    background: #a6bedb;
   }
   
   /* Table Styling */

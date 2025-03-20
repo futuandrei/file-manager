@@ -50,17 +50,17 @@
   .search-bar input {
     width: 100%;
     color: #ffffff; /* ✅ Set text color to white or another desired color */
-    background-color: #3A3A3D;
+    background-color: #18181A;
     border-style: solid;
-    border-width: 1px;
     border-color: #3A3A3D;
+    border-width: 1px;
     border-radius: 4px;
     padding: 8px; 
     font-size: 16px;
 }
 
 .search-bar input::placeholder {
-    color: #cccccc; /* ✅ Ensure placeholder text is visible */
+    color: #45454a; /* ✅ Ensure placeholder text is visible */
     opacity: 1; /* Ensure full opacity */
 }
 
