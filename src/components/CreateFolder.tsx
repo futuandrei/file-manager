@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import "./CreateFolder.css";
 
 interface CreateFolderProps {
   currentFolderId: string | null; // Parent folder ID
@@ -41,7 +42,11 @@ const CreateFolder: React.FC<CreateFolderProps> = ({
     }
   };
 
-  return <button onClick={createFolder}>➕ New Folder</button>;
+  return (
+    <button className="button-secondary" onClick={createFolder}>
+      New Folder
+    </button>
+  );
 };
 
 export default CreateFolder;

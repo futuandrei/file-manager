@@ -9,7 +9,10 @@
 :root {
   --primary-color: #007bff;
   --background-color: #f4f4f4;
-  --font-family: Inter, Arial, sans-serif;
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
+                 "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", 
+                 "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-weight: 200; /* Default to normal weight */
 }
 
 /* Global Typography */
@@ -17,5 +20,6 @@ body {
   font-family: var(--font-family);
   /* color: #333; */
   /* background-color: var(--background-color); */
+  font-weight: var(--font-weight);
   line-height: 1.6;
 }

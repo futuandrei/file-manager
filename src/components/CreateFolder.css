@@ -1,0 +1,12 @@
+.button-secondary {
+    background-color: transparent;
+    color: #BFDBFE;
+    border-style: solid;
+    border-color: #BFDBFE;
+    border-width: 1px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 34px;
+    cursor: pointer;
+}
