@@ -65,11 +65,13 @@
 }
 
 .logout-button {
+  color: #BFDBFE;
   border-style: solid;
+  border-color: #BFDBFE;
   border-width: 1px;
   border-radius: 5px;
-  border-color: #3A3A3D;
   background-color: transparent;
   height: 34px;
-  color: #ffffff;
+  color: #BFDBFE;
+  cursor: pointer;
 }
