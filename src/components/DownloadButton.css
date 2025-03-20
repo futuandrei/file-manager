@@ -1,6 +1,6 @@
 .download-button {
-  background: #18181A;
-  color: white;
+  background: transparent;
+  color: hsl(0, 0%, 80%);
   border: none;
   cursor: pointer;
   }
